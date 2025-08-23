@@ -28,9 +28,13 @@
     "test": "jest --verbose --coverage"
   },
   "devDependencies": {
+    "@eslint/js": "^9.34.0",
+    "@stylistic/eslint-plugin": "^5.2.3",
     "eslint": "^9.34.0",
     "eslint-config-hexo": "^6.0.0",
+    "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-json": "^4.0.1",
+    "globals": "^16.3.0",
     "jest": "^30.0.5"
   },
   "dependencies": {
