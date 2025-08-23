@@ -28,7 +28,7 @@ describe('generator', () => {
                 params.generate,
                 newHtmlDivTag(
                     'og-image',
-                    newHtmlImgTag(imageUrl, title, params.generate)
+                    newHtmlImgTag(imageUrl, '', params.generate)
                 )
                 + newHtmlDivTag(
                     'descriptions',
