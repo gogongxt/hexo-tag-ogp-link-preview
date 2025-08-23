@@ -99,8 +99,8 @@ describe('generator', () => {
             })
         );
 
-        await expect(generate(scraper, params)).rejects.toThrow(
-            new Error('error from mock OpenGraph scraper.')
+        await expect(generate(scraper, params)).resolves.toStrictEqual(
+            newHtmlAnchorTag(params.scrape.url, params.generate)
         );
     });
 });
