@@ -4,7 +4,7 @@ const { newHtmlDivTag, newHtmlAnchorTag, newHtmlImgTag } = require('../lib/htmlt
 
 describe('htmlTag', () => {
     it('Generate a new html div tag', () => {
-        expect(newHtmlDivTag('div-class', 'text')).toEqual(
+        expect(newHtmlDivTag('div-class', 'text')).toStrictEqual(
             '<div class="div-class">text</div>'
         );
     });
@@ -19,7 +19,7 @@ describe('htmlTag', () => {
             fallbackText: content,
         };
 
-        expect(newHtmlAnchorTag(url, config, content)).toEqual(
+        expect(newHtmlAnchorTag(url, config, content)).toStrictEqual(
             `<a href="${url}" target="${config.target}" rel="${config.rel}" class="${config.className.anchor_link}">${content}</a>`
         );
     });
@@ -33,7 +33,7 @@ describe('htmlTag', () => {
             fallbackText: 'fallbackText',
         };
 
-        expect(newHtmlAnchorTag(url, config)).toEqual(
+        expect(newHtmlAnchorTag(url, config)).toStrictEqual(
             `<a href="${url}" target="${config.target}" rel="${config.rel}">${config.fallbackText}</a>`
         );
     });
@@ -59,7 +59,7 @@ describe('htmlTag', () => {
             loading: 'lazy',
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toEqual(
+        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
             `<img src="${url}" alt="${alt}" class="${config.className.image}" loading="${config.loading}">`
         );
     });
@@ -71,7 +71,7 @@ describe('htmlTag', () => {
             loading: 'eager',
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toEqual(
+        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
             `<img src="${url}" alt="${alt}" loading="${config.loading}">`
         );
     });
@@ -84,7 +84,7 @@ describe('htmlTag', () => {
             loading: 'none',
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toEqual(
+        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
             `<img src="${url}" alt="${alt}" class="${config.className.image}">`
         );
     });

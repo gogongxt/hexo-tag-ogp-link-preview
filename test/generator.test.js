@@ -22,21 +22,15 @@ describe('generator', () => {
             })
         );
 
-        await expect(generate(scraper, params)).resolves.toEqual(
-            newHtmlAnchorTag(
-                params.scrape.url,
-                params.generate,
-                newHtmlDivTag(
-                    'og-image',
-                    newHtmlImgTag(imageUrl, '', params.generate)
-                )
-                + newHtmlDivTag(
-                    'descriptions',
-                    newHtmlDivTag('og-title', title)
-                    + newHtmlDivTag('og-description', description)
-                )
+        await expect(generate(scraper, params)).resolves.toStrictEqual(newHtmlAnchorTag(
+            params.scrape.url,
+            params.generate,
+            newHtmlDivTag('og-image', newHtmlImgTag(imageUrl, '', params.generate))
+            + newHtmlDivTag(
+                'descriptions',
+                newHtmlDivTag('og-title', title) + newHtmlDivTag('og-description', description)
             )
-        );
+        ));
     });
 
     it('Was able to get title and description from OpenGraph', async () => {
@@ -53,17 +47,14 @@ describe('generator', () => {
             })
         );
 
-        await expect(generate(scraper, params)).resolves.toEqual(
-            newHtmlAnchorTag(
-                params.scrape.url,
-                params.generate,
-                newHtmlDivTag(
-                    'descriptions',
-                    newHtmlDivTag('og-title', title)
-                    + newHtmlDivTag('og-description', description)
-                )
+        await expect(generate(scraper, params)).resolves.toEqual(newHtmlAnchorTag(
+            params.scrape.url,
+            params.generate,
+            newHtmlDivTag(
+                'descriptions',
+                newHtmlDivTag('og-title', title) + newHtmlDivTag('og-description', description)
             )
-        );
+        ));
     });
 
     it('Neither able to get title nor description from OpenGraph', async () => {
@@ -80,7 +71,7 @@ describe('generator', () => {
             })
         );
 
-        await expect(generate(scraper, params)).resolves.toEqual(
+        await expect(generate(scraper, params)).resolves.toStrictEqual(
             newHtmlAnchorTag(params.scrape.url, params.generate)
         );
     });
