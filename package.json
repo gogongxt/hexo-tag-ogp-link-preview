@@ -24,7 +24,8 @@
   ],
   "main": "index.js",
   "scripts": {
-    "lint": "eslint --ext .js --ext .json .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "test": "jest --verbose --coverage"
   },
   "devDependencies": {
