@@ -1,9 +1,9 @@
 'use strict';
 
-const generate = require('../lib/generator');
-const getParameters = require('../lib/parameters');
 const getConfig = require('../lib/configure');
+const generate = require('../lib/generator');
 const { newHtmlAnchorTag, newHtmlDivTag, newHtmlImgTag } = require('../lib/htmltag');
+const getParameters = require('../lib/parameters');
 
 const { mockFullOgValues, mockTextOgValues, mockInvalidOgValues, mockThrowError } = require('./mock/scraper');
 

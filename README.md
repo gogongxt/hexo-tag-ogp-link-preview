@@ -2,11 +2,6 @@
 
 A Hexo tag plugin for embedding link preview by OpenGraph on article.
 
-[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
-[![Lint and Test](https://github.com/h-sugawara/hexo-tag-ogp-link-preview/actions/workflows/lint-and-test.yml/badge.svg)](https://github.com/h-sugawara/hexo-tag-ogp-link-preview/actions/workflows/lint-and-test.yml)
-[![Maintainability](https://api.codeclimate.com/v1/badges/02bc45163475aa8580c8/maintainability)](https://codeclimate.com/github/h-sugawara/hexo-tag-ogp-link-preview/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/02bc45163475aa8580c8/test_coverage)](https://codeclimate.com/github/h-sugawara/hexo-tag-ogp-link-preview/test_coverage)
-
 ## Installation
 
 ```bash
