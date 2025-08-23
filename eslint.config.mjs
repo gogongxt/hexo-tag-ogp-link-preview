@@ -37,6 +37,9 @@ export default defineConfig([
             '@stylistic/semi': ['error', 'always'],
             '@stylistic/quotes': ['error', 'single'],
             '@stylistic/quote-props': ['error', 'consistent-as-needed'],
+            '@stylistic/arrow-parens': ['error', 'always'],
+            '@stylistic/object-curly-newline': ['error'],
+            '@stylistic/brace-style': ['error'],
             '@stylistic/indent': ['error', 4, {
                 SwitchCase: 1,
             }],
@@ -49,6 +52,14 @@ export default defineConfig([
             }],
             '@stylistic/object-curly-spacing': ['error', 'always', {
                 objectsInObjects: true,
+            }],
+            '@stylistic/space-before-function-paren': ['error', {
+                named: 'never',
+            }],
+            '@stylistic/no-multiple-empty-lines': ['error', {
+                max: 1,
+                maxEOF: 1,
+                maxBOF: 0,
             }],
             'complexity': ['error', {
                 max: 5,
