@@ -10,7 +10,7 @@ hexo.extend.tag.register(
     'link_preview',
     (args, content) => {
         return generate(ogs, getParameters(args, content, getConfig(hexo.config)))
-            .then(tag => tag)
+            .then((tag) => tag)
             .catch((error) => {
                 console.log('generate error:', error);
                 return '';
