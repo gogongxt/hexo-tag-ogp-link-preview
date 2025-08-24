@@ -10,6 +10,31 @@ describe('generator', () => {
     it('Was able to get all values from OpenGraph', async () => {
         const { scraper, imageUrl, title, description } = mockFullOgValues();
         const params = getParameters(
+            ['https://example.com'],
+            'fallbackText',
+            getConfig({
+                link_preview: {
+                    class_name: { anchor_link: 'link-preview' },
+                    description_length: 140,
+                    disguise_crawler: true,
+                },
+            }),
+        );
+
+        await expect(generate(scraper, params)).resolves.toStrictEqual([
+            '<a href="https://example.com/" target="_blank" rel="nofollow" class="link-preview">',
+            `<div class="og-image"><img src="${imageUrl}" alt="" loading="lazy"></div>`,
+            '<div class="descriptions">',
+            '<div class="og-title">' + title + '</div>',
+            '<div class="og-description">' + description + '</div>',
+            '</div>',
+            '</a>',
+        ].join(''));
+    });
+
+    it('Was able to get all values from OpenGraph and append class suffix', async () => {
+        const { scraper, imageUrl, title, description } = mockFullOgValues();
+        const params = getParameters(
             ['https://example.com', 'classSuffix:suffix'],
             'fallbackText',
             getConfig({
@@ -33,6 +58,30 @@ describe('generator', () => {
     });
 
     it('Was able to get title and description from OpenGraph', async () => {
+        const { scraper, title, description } = mockTextOgValues();
+        const params = getParameters(
+            ['https://example.com'],
+            'fallbackText',
+            getConfig({
+                link_preview: {
+                    class_name: { anchor_link: 'link-preview' },
+                    description_length: 140,
+                    disguise_crawler: true,
+                },
+            }),
+        );
+
+        await expect(generate(scraper, params)).resolves.toStrictEqual([
+            '<a href="https://example.com/" target="_blank" rel="nofollow" class="link-preview">',
+            '<div class="descriptions">',
+            '<div class="og-title">' + title + '</div>',
+            '<div class="og-description">' + description + '</div>',
+            '</div>',
+            '</a>',
+        ].join(''));
+    });
+
+    it('Was able to get title and description from OpenGraph and append class suffix', async () => {
         const { scraper, title, description } = mockTextOgValues();
         const params = getParameters(
             ['https://example.com', 'classSuffix:suffix'],
