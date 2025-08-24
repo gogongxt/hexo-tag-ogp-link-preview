@@ -19,5 +19,5 @@ hexo.extend.tag.register(
     {
         async: true,
         ends: true,
-    }
+    },
 );

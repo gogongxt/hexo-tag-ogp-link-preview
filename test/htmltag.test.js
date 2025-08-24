@@ -8,7 +8,7 @@ describe('htmlTag', () => {
         expect(newHtmlDivTag('div-class', 'text', {})).toStrictEqual(util.htmlTag(
             'div',
             { class: 'div-class' },
-            'text'
+            'text',
         ));
     });
 
@@ -16,7 +16,7 @@ describe('htmlTag', () => {
         expect(newHtmlDivTag('div-class', 'text', { classSuffix: 'suffix' })).toStrictEqual(util.htmlTag(
             'div',
             { class: 'div-class-suffix' },
-            'text'
+            'text',
         ));
     });
 
@@ -34,7 +34,7 @@ describe('htmlTag', () => {
         expect(newHtmlAnchorTag(href, config, content)).toStrictEqual(util.htmlTag(
             'a',
             { href, target: config.target, rel: config.rel, class: config.className.anchor_link },
-            content
+            content,
         ));
     });
 
@@ -50,7 +50,7 @@ describe('htmlTag', () => {
         expect(newHtmlAnchorTag(href, config)).toStrictEqual(util.htmlTag(
             'a',
             { href, target: config.target, rel: config.rel },
-            config.fallbackText
+            config.fallbackText,
         ));
     });
 
@@ -63,7 +63,7 @@ describe('htmlTag', () => {
         };
 
         expect(() => newHtmlAnchorTag(url, config)).toThrow(
-            new Error('failed to generate a new anchor tag.')
+            new Error('failed to generate a new anchor tag.'),
         );
     });
 
@@ -78,7 +78,7 @@ describe('htmlTag', () => {
 
         expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
             'img',
-            { src, alt, class: config.className.image, loading: config.loading }
+            { src, alt, class: config.className.image, loading: config.loading },
         ));
     });
 
@@ -91,7 +91,7 @@ describe('htmlTag', () => {
 
         expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
             'img',
-            { src, alt, loading: config.loading }
+            { src, alt, loading: config.loading },
         ));
     });
 
@@ -105,7 +105,7 @@ describe('htmlTag', () => {
 
         expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
             'img',
-            { src, alt, class: config.className.image }
+            { src, alt, class: config.className.image },
         ));
     });
 });

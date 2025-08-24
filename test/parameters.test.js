@@ -68,7 +68,7 @@ describe('parameters', () => {
         const config = { class_name: { anchor_link: 'link-preview' }, descriptionLength: 140, disguise_crawler: true };
 
         expect(() => getParameters([], fallbackText, config)).toThrow(
-            new Error('Scraping target url is not contains.')
+            new Error('Scraping target url is not contains.'),
         );
     });
 
@@ -78,7 +78,7 @@ describe('parameters', () => {
         const config = { class_name: { anchor_link: 'link-preview' }, descriptionLength: 140, disguise_crawler: true };
 
         expect(() => getParameters(args, fallbackText, config)).toThrow(
-            new Error('Scraping target url is not contains.')
+            new Error('Scraping target url is not contains.'),
         );
     });
 });

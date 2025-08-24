@@ -18,7 +18,7 @@ describe('generator', () => {
                     description_length: 140,
                     disguise_crawler: true,
                 },
-            })
+            }),
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual([
@@ -43,7 +43,7 @@ describe('generator', () => {
                     description_length: 140,
                     disguise_crawler: true,
                 },
-            })
+            }),
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual([
@@ -67,11 +67,11 @@ describe('generator', () => {
                     description_length: 140,
                     disguise_crawler: true,
                 },
-            })
+            }),
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual(
-            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`
+            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`,
         );
     });
 
@@ -86,11 +86,11 @@ describe('generator', () => {
                     description_length: 140,
                     disguise_crawler: true,
                 },
-            })
+            }),
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual(
-            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`
+            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`,
         );
     });
 });
