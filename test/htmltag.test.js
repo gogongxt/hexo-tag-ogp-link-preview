@@ -1,31 +1,45 @@
 'use strict';
 
+const util = require('hexo-util');
 const { newHtmlDivTag, newHtmlAnchorTag, newHtmlImgTag } = require('../lib/htmltag');
 
 describe('htmlTag', () => {
     it('Generate a new html div tag', () => {
-        expect(newHtmlDivTag('div-class', 'text')).toStrictEqual(
-            '<div class="div-class">text</div>'
-        );
+        expect(newHtmlDivTag('div-class', 'text', {})).toStrictEqual(util.htmlTag(
+            'div',
+            { class: 'div-class' },
+            'text',
+        ));
+    });
+
+    it('Generate a new html div tag with class name suffix', () => {
+        expect(newHtmlDivTag('div-class', 'text', { classSuffix: 'suffix' })).toStrictEqual(util.htmlTag(
+            'div',
+            { class: 'div-class-suffix' },
+            'text',
+        ));
     });
 
     it('Generate a new html anchor tag', () => {
-        const url = 'http://example.com/';
+        const href = 'https://example.com/';
         const content = 'text';
         const config = {
             target: '_blank',
             rel: 'nofollow',
+            classSuffix: 'suffix',
             className: { anchor_link: 'anchor-class' },
             fallbackText: content,
         };
 
-        expect(newHtmlAnchorTag(url, config, content)).toStrictEqual(
-            `<a href="${url}" target="${config.target}" rel="${config.rel}" class="${config.className.anchor_link}">${content}</a>`
-        );
+        expect(newHtmlAnchorTag(href, config, content)).toStrictEqual(util.htmlTag(
+            'a',
+            { href, target: config.target, rel: config.rel, class: config.className.anchor_link },
+            content,
+        ));
     });
 
     it('Generate a new html anchor tag with fallbackText', () => {
-        const url = 'http://example.com/';
+        const href = 'https://example.com/';
         const config = {
             target: '_blank',
             rel: 'nofollow',
@@ -33,13 +47,15 @@ describe('htmlTag', () => {
             fallbackText: 'fallbackText',
         };
 
-        expect(newHtmlAnchorTag(url, config)).toStrictEqual(
-            `<a href="${url}" target="${config.target}" rel="${config.rel}">${config.fallbackText}</a>`
-        );
+        expect(newHtmlAnchorTag(href, config)).toStrictEqual(util.htmlTag(
+            'a',
+            { href, target: config.target, rel: config.rel },
+            config.fallbackText,
+        ));
     });
 
     it('Failed to generate a new html anchor tag', () => {
-        const url = 'http://example.com/';
+        const url = 'https://example.com/';
         const config = {
             target: '_blank',
             rel: 'nofollow',
@@ -47,45 +63,49 @@ describe('htmlTag', () => {
         };
 
         expect(() => newHtmlAnchorTag(url, config)).toThrow(
-            new Error('failed to generate a new anchor tag.')
+            new Error('failed to generate a new anchor tag.'),
         );
     });
 
     it('Generate a new html image tag', () => {
-        const url = 'http://example.com/';
+        const src = 'https://example.com/';
         const alt = 'alternative text';
         const config = {
-            className: { image: 'image-class' },
             loading: 'lazy',
+            classSuffix: 'suffix',
+            className: { image: 'image-class' },
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
-            `<img src="${url}" alt="${alt}" class="${config.className.image}" loading="${config.loading}">`
-        );
+        expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
+            'img',
+            { src, alt, class: config.className.image, loading: config.loading },
+        ));
     });
 
     it('Generate a new html image tag without class name', () => {
-        const url = 'http://example.com/';
+        const src = 'https://example.com/';
         const alt = 'alternative text';
         const config = {
             loading: 'eager',
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
-            `<img src="${url}" alt="${alt}" loading="${config.loading}">`
-        );
+        expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
+            'img',
+            { src, alt, loading: config.loading },
+        ));
     });
 
     it('Generate a new html image tag without loading', () => {
-        const url = 'http://example.com/';
+        const src = 'https://example.com/';
         const alt = 'alternative text';
         const config = {
-            className: { image: 'image-class' },
             loading: 'none',
+            className: { image: 'image-class' },
         };
 
-        expect(newHtmlImgTag(url, alt, config)).toStrictEqual(
-            `<img src="${url}" alt="${alt}" class="${config.className.image}">`
-        );
+        expect(newHtmlImgTag(src, alt, config)).toStrictEqual(util.htmlTag(
+            'img',
+            { src, alt, class: config.className.image },
+        ));
     });
 });

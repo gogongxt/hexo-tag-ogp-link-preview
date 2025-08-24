@@ -43,13 +43,7 @@ export default defineConfig([
             '@stylistic/indent': ['error', 4, {
                 SwitchCase: 1,
             }],
-            '@stylistic/comma-dangle': ['error', {
-                arrays: 'always-multiline',
-                objects: 'always-multiline',
-                imports: 'always-multiline',
-                exports: 'always-multiline',
-                functions: 'never',
-            }],
+            '@stylistic/comma-dangle': ['error', 'always-multiline'],
             '@stylistic/object-curly-spacing': ['error', 'always', {
                 objectsInObjects: true,
             }],
