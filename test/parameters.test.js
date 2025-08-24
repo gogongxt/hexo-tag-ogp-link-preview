@@ -4,7 +4,7 @@ const getParameters = require('../lib/parameters');
 
 describe('parameters', () => {
     it('Specify all arguments explicitly', () => {
-        const args = ['https://example.com', '_self', 'rel:noopener', 'loading:eager'];
+        const args = ['https://example.com', '_self', 'rel:noopener', 'loading:eager', 'classSuffix:suffix'];
         const fallbackText = 'fallbackText';
         const config = { class_name: { anchor_link: 'link-preview' }, descriptionLength: 140, disguise_crawler: true };
         const { class_name: className, description_length: descriptionLength } = config;
@@ -23,6 +23,7 @@ describe('parameters', () => {
                 target: args[1],
                 rel: args[2].replace('rel:', ''),
                 loading: args[3].replace('loading:', ''),
+                classSuffix: args[4].replace('classSuffix:', ''),
                 descriptionLength,
                 className,
                 fallbackText,
@@ -46,7 +47,7 @@ describe('parameters', () => {
                     },
                 },
             },
-            generate: { target: '_blank', rel: 'nofollow', loading: 'lazy', descriptionLength, className, fallbackText },
+            generate: { target: '_blank', rel: 'nofollow', loading: 'lazy', classSuffix: '', descriptionLength, className, fallbackText },
         });
     });
 
@@ -58,7 +59,7 @@ describe('parameters', () => {
 
         expect(getParameters(args, fallbackText, config)).toStrictEqual({
             scrape: { url: args[0], fetchOptions: { headers: { accept: 'text/html' } } },
-            generate: { target: '_blank', rel: 'nofollow', loading: 'lazy', descriptionLength, className, fallbackText },
+            generate: { target: '_blank', rel: 'nofollow', loading: 'lazy', classSuffix: '', descriptionLength, className, fallbackText },
         });
     });
 
