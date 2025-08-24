@@ -5,7 +5,7 @@ function mockFullOgValues() {
     const title = 'test_title';
     const description = 'テストデスクリプション';
 
-    const scraper = async function() {
+    const scraper = async function () {
         return {
             error: false,
             result: {
@@ -23,7 +23,7 @@ function mockTextOgValues() {
     const title = 'test_title';
     const description = 'テストデスクリプション';
 
-    const scraper = async function() {
+    const scraper = async function () {
         return {
             error: false,
             result: {
@@ -38,7 +38,7 @@ function mockTextOgValues() {
 }
 
 function mockInvalidOgValues() {
-    const scraper = async function() {
+    const scraper = async function () {
         return { error: false, result: {} };
     };
 
@@ -46,7 +46,7 @@ function mockInvalidOgValues() {
 }
 
 function mockThrowError() {
-    const scraper = async function() {
+    const scraper = async function () {
         throw new Error('error from mock OpenGraph scraper.');
     };
 
