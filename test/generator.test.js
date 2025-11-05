@@ -23,7 +23,7 @@ describe('generator', () => {
 
         await expect(generate(scraper, params)).resolves.toStrictEqual([
             '<a href="https://example.com/" target="_blank" rel="nofollow" class="link-preview">',
-            `<div class="og-image"><img src="${imageUrl}" alt="" loading="lazy"></div>`,
+            `<div class="og-image"><img src="${imageUrl}" alt="" loading="lazy"><div class="og-url">https://example.com</div></div>`,
             '<div class="descriptions">',
             '<div class="og-title">' + title + '</div>',
             '<div class="og-description">' + description + '</div>',
@@ -48,7 +48,7 @@ describe('generator', () => {
 
         await expect(generate(scraper, params)).resolves.toStrictEqual([
             '<a href="https://example.com/" target="_blank" rel="nofollow" class="link-preview">',
-            `<div class="og-image-suffix"><img src="${imageUrl}" alt="" loading="lazy"></div>`,
+            `<div class="og-image-suffix"><img src="${imageUrl}" alt="" loading="lazy"><div class="og-url-suffix">https://example.com</div></div>`,
             '<div class="descriptions-suffix">',
             '<div class="og-title-suffix">' + title + '</div>',
             '<div class="og-description-suffix">' + description + '</div>',

@@ -2,6 +2,14 @@
 
 A Hexo tag plugin for embedding link preview by OpenGraph on article.
 
+## Features
+
+- Generate link preview cards using OpenGraph metadata
+- Display URL address within the preview
+- Support for custom class suffixes
+- Fallback to simple anchor link when OpenGraph scraping fails
+- Configurable crawler disguise for better scraping success
+
 ## Installation
 
 ```bash
@@ -85,6 +93,7 @@ When scraper get OpenGraph successfully, generated html like blow:
 <a href="https://www.example.com/" target="_blank" rel="nofollow" class="link-preview">
     <div class="og-image-special">
         <img src="https://www.example.com/image.png" alt="example image" class="not-gallery-item" loading="lazy">
+        <div class="og-url-special">https://www.example.com/</div>
     </div>
     <div class="descriptions-special">
         <div class="og-title-special">title text</div>
