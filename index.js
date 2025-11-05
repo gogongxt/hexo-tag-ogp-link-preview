@@ -8,8 +8,8 @@ const getParameters = require('./lib/parameters');
 
 hexo.extend.tag.register(
     'link_preview',
-    (args, content) => {
-        return generate(ogs, getParameters(args, content, getConfig(hexo.config)))
+    (args) => {
+        return generate(ogs, getParameters(args, getConfig(hexo.config)))
             .then((tag) => tag)
             .catch((error) => {
                 console.log('generate error:', error);
@@ -18,6 +18,6 @@ hexo.extend.tag.register(
     },
     {
         async: true,
-        ends: true,
+        ends: false,
     },
 );

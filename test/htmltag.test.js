@@ -20,51 +20,41 @@ describe('htmlTag', () => {
         ));
     });
 
-    it('Generate a new html anchor tag', () => {
+    it('Generate a new html anchor tag with content', () => {
         const href = 'https://example.com/';
+        const linkText = 'https://example.com/';
         const content = 'text';
         const config = {
             target: '_blank',
             rel: 'nofollow',
             classSuffix: 'suffix',
             className: { anchor_link: 'anchor-class' },
-            fallbackText: content,
         };
 
-        expect(newHtmlAnchorTag(href, config, content)).toStrictEqual(util.htmlTag(
+        expect(newHtmlAnchorTag(href, linkText, config, content)).toStrictEqual(util.htmlTag(
             'a',
             { href, target: config.target, rel: config.rel, class: config.className.anchor_link },
             content,
         ));
     });
 
-    it('Generate a new html anchor tag with fallbackText', () => {
+    it('Generate a new html anchor tag with URL as fallback text', () => {
         const href = 'https://example.com/';
-        const config = {
-            target: '_blank',
-            rel: 'nofollow',
-            className: { anchor_link: 'anchor-class' },
-            fallbackText: 'fallbackText',
-        };
-
-        expect(newHtmlAnchorTag(href, config)).toStrictEqual(util.htmlTag(
-            'a',
-            { href, target: config.target, rel: config.rel },
-            config.fallbackText,
-        ));
-    });
-
-    it('Failed to generate a new html anchor tag', () => {
-        const url = 'https://example.com/';
+        const linkText = 'https://example.com/';
         const config = {
             target: '_blank',
             rel: 'nofollow',
             className: { anchor_link: 'anchor-class' },
         };
 
-        expect(() => newHtmlAnchorTag(url, config)).toThrow(
-            new Error('failed to generate a new anchor tag.'),
-        );
+        const result = newHtmlAnchorTag(href, linkText, config);
+
+        // Fallback should not include class to avoid CSS conflicts
+        expect(result).toContain('href="https://example.com/"');
+        expect(result).toContain('target="_blank"');
+        expect(result).toContain('rel="nofollow"');
+        expect(result).not.toContain('class=');
+        expect(result).toContain('https://example.com/');
     });
 
     it('Generate a new html image tag', () => {

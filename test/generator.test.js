@@ -11,7 +11,6 @@ describe('generator', () => {
         const { scraper, imageUrl, title, description } = mockFullOgValues();
         const params = getParameters(
             ['https://example.com'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -36,7 +35,6 @@ describe('generator', () => {
         const { scraper, imageUrl, title, description } = mockFullOgValues();
         const params = getParameters(
             ['https://example.com', 'classSuffix:suffix'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -61,7 +59,6 @@ describe('generator', () => {
         const { scraper, title, description } = mockTextOgValues();
         const params = getParameters(
             ['https://example.com'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -85,7 +82,6 @@ describe('generator', () => {
         const { scraper, title, description } = mockTextOgValues();
         const params = getParameters(
             ['https://example.com', 'classSuffix:suffix'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -109,7 +105,6 @@ describe('generator', () => {
         const { scraper } = mockInvalidOgValues();
         const params = getParameters(
             ['https://example.com'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -120,7 +115,7 @@ describe('generator', () => {
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual(
-            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`,
+            '<a href="https://example.com/" target="_blank" rel="nofollow">https://example.com</a>',
         );
     });
 
@@ -128,7 +123,6 @@ describe('generator', () => {
         const { scraper } = mockThrowError();
         const params = getParameters(
             ['https://example.com'],
-            'fallbackText',
             getConfig({
                 link_preview: {
                     class_name: { anchor_link: 'link-preview' },
@@ -139,7 +133,7 @@ describe('generator', () => {
         );
 
         await expect(generate(scraper, params)).resolves.toStrictEqual(
-            `<a href="${params.scrape.url}/" target="_blank" rel="nofollow">${params.generate.fallbackText}</a>`,
+            '<a href="https://example.com/" target="_blank" rel="nofollow">https://example.com</a>',
         );
     });
 });

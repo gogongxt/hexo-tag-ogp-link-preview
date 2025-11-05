@@ -21,16 +21,12 @@ npm install hexo-tag-ogp-link-preview
 Write like below to your hexo article markdown file:
 ```
 {% link_preview url [target] [rel] [loading] [classSuffix] %}
-[Content]
-{% endlink_preview %}
 ```
 
 or you are able to use "Named Parameter":
 
 ```
 {% link_preview url [rel:{rel_value}] [target:{target_value}] [loading:{loading_value}] [classSuffix:{classSuffix_value}] %}
-[Content]
-{% endlink_preview %}
 ```
 
 ### Tag arguments
@@ -47,9 +43,6 @@ or you are able to use "Named Parameter":
 | `loading`     | No        | `lazy`     | Specify a `loading` attribute of the image element.<br>One of `lazy`, `eager`, or `none`.<br>If specify a `none`, remove loading attribute from image element. |
 | `classSuffix` | No        |            | Specify a suffix of `class` attribute value all of the div elements.                                                                                           |
 
-### Tag content
-
-`content` is fallback text which use when failed to get OpenGraph data from `url`.
 
 ## Configuration
 
@@ -84,8 +77,6 @@ Write a following to your hexo article markdown file:
 
 ```markdown
 {% link_preview https://www.example.com/ loading:lazy classSuffix:special %}
-fallback Text
-{% endlink_preview %}
 ```
 
 When scraper get OpenGraph successfully, generated html like blow:
@@ -104,5 +95,5 @@ When scraper get OpenGraph successfully, generated html like blow:
 
 When scraper fail to get OpenGraph, generated html like blow:
 ```html
-<a href="https://www.example.com/" target="_blank" rel="nofollow">fallback Text</a>
+<a href="https://www.example.com/" target="_blank" rel="nofollow">https://www.example.com/</a>
 ```
