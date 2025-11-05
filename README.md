@@ -6,6 +6,7 @@ A Hexo tag plugin for embedding link preview by OpenGraph on article.
 
 - Generate link preview cards using OpenGraph metadata
 - Display URL address within the preview
+- **Automatically fetch and display website favicon (browser icon)**
 - Support for custom class suffixes
 - Fallback to simple anchor link when OpenGraph scraping fails
 - Configurable crawler disguise for better scraping success
@@ -96,6 +97,14 @@ When scraper get OpenGraph successfully, generated html like blow:
       loading="lazy"
     />
   </div>
+  <div class="og-favicon-special">
+    <img
+      src="https://www.example.com/favicon.ico"
+      alt="favicon"
+      class="favicon-icon"
+      loading="lazy"
+    />
+  </div>
   <div class="descriptions-special">
     <div class="og-title-special">title text</div>
     <div class="og-description-special">description text</div>
@@ -111,3 +120,37 @@ When scraper fail to get OpenGraph, generated html like blow:
   >https://www.example.com/</a
 >
 ```
+
+## Favicon Support
+
+The plugin automatically fetches and displays the website favicon (browser icon) in the link preview cards. The favicon is displayed as a separate element at the same level as the main image, appearing between the image and the description text.
+
+### Favicon Detection Strategy
+
+The plugin uses a smart detection strategy to find the best favicon:
+
+1. **OpenGraph Images**: First, it searches through OpenGraph image metadata for URLs containing 'icon' or 'favicon' keywords
+2. **Standard Location**: If no favicon is found in OpenGraph data, it falls back to the standard location: `{domain}/favicon.ico`
+3. **Error Handling**: If URL parsing fails, the favicon is safely omitted
+
+### CSS Classes
+
+The favicon elements use the following CSS classes:
+
+- **Container**: `og-favicon` (supports `classSuffix` parameter, becomes `og-favicon-{suffix}`)
+- **Image**: `favicon-icon` (fixed class name)
+
+### Example HTML Structure
+
+```html
+<div class="og-favicon-special">
+  <img
+    src="https://www.example.com/favicon.ico"
+    alt="favicon"
+    class="favicon-icon"
+    loading="lazy"
+  />
+</div>
+```
+
+The favicon inherits the loading behavior from the plugin configuration and supports the same loading options as main images (`lazy`, `eager`, or `none`).
