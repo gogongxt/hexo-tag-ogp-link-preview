@@ -10,6 +10,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -26,6 +27,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview-2', image: 'not-gallery-item' },
             description_length: 100,
             disguise_crawler: false,
+            timeout: 10000,
         });
     });
 
@@ -40,6 +42,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview-2' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -54,6 +57,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -70,6 +74,7 @@ describe('configure', () => {
             },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -86,6 +91,7 @@ describe('configure', () => {
             },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -100,6 +106,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview', image: 'not-gallery-item' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 
@@ -114,6 +121,22 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
+        });
+    });
+
+    it('Specify custom timeout value', () => {
+        const hexoCfg = {
+            link_preview: {
+                timeout: 5000,
+            },
+        };
+
+        expect(getConfig(hexoCfg)).toStrictEqual({
+            class_name: { anchor_link: 'link-preview' },
+            description_length: 140,
+            disguise_crawler: true,
+            timeout: 5000,
         });
     });
 
@@ -128,6 +151,7 @@ describe('configure', () => {
             class_name: { anchor_link: 'link-preview' },
             description_length: 140,
             disguise_crawler: true,
+            timeout: 10000,
         });
     });
 });

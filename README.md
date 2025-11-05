@@ -55,6 +55,7 @@ link_preview:
     image: not-gallery-item
   description_length: 140
   disguise_crawler: true
+  timeout: 10000
 ```
 
 ### Setting values
@@ -70,6 +71,7 @@ link_preview:
 | `class_name`.`image`       | `string`             |                | Set a `class` attribute of the image element.<br>If you are not specify (empty string, etc.), nothing to set.                                                                                  |
 | `description_length`       | `number`             | `140`          | It sliced to fit if a number of character of the `og:Description` exceeds the specified number value.                                                                                          |
 | `disguise_crawler`         | `boolean`            | `true`         | If scraper for OpenGraph want to disguise to crawler, set `true`.<br>Otherwise, set to `false`.                                                                                                |
+| `timeout`                  | `number`             | `10000`        | Set timeout in milliseconds (ms) for OpenGraph scraping. If scraping takes longer than this time, it will be treated as an error and fallback to simple link.                                   |
 
 ## Example
 
