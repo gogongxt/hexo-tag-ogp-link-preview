@@ -25,7 +25,7 @@ npm run lint:fix
 - `index.js` - Hexo tag registration using `hexo.extend.tag.register('link_preview', ...)`
 
 ### Core Modules
-- `lib/generator.js` - Main logic that orchestrates scraping and HTML generation, includes URL display functionality
+- `lib/generator.js` - Main logic that orchestrates scraping and HTML generation, includes URL display functionality and flat HTML structure generation
 - `lib/configure.js` - Configuration management with defaults for class names, description length, and crawler disguise
 - `lib/parameters.js` - Argument parsing for tag parameters (URL, target, rel, loading, classSuffix)
 - `lib/opengraph.js` - OpenGraph data extraction (title, description, image)
@@ -52,6 +52,16 @@ Configuration is read from `_config.yml` under `link_preview:` key:
 - `class_name` - Can be string (anchor only) or object (anchor + image)
 - `description_length` - Number (default: 140)
 - `disguise_crawler` - Boolean (default: true)
+
+### HTML Structure
+The plugin generates a flat HTML structure with all elements at the same level:
+- `og-image` - Container for the main OpenGraph image
+- `og-favicon` - Container for the website favicon
+- `og-title` - OpenGraph title text
+- `og-description` - OpenGraph description text
+- `og-url` - URL address display
+
+All elements are direct children of the anchor tag, with no nested containers.
 
 ### Error Handling
 - Generator falls back to simple anchor link if OpenGraph scraping fails

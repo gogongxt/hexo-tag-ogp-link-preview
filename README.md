@@ -105,11 +105,9 @@ When scraper get OpenGraph successfully, generated html like blow:
       loading="lazy"
     />
   </div>
-  <div class="descriptions-special">
-    <div class="og-title-special">title text</div>
-    <div class="og-description-special">description text</div>
-    <div class="og-url-special">https://www.example.com/</div>
-  </div>
+  <div class="og-title-special">title text</div>
+  <div class="og-description-special">description text</div>
+  <div class="og-url-special">https://www.example.com/</div>
 </a>
 ```
 
@@ -123,7 +121,7 @@ When scraper fail to get OpenGraph, generated html like blow:
 
 ## Favicon Support
 
-The plugin automatically fetches and displays the website favicon (browser icon) in the link preview cards. The favicon is displayed as a separate element at the same level as the main image, appearing between the image and the description text.
+The plugin automatically fetches and displays the website favicon (browser icon) in the link preview cards. The favicon is displayed as a separate element at the same level as all other elements (`og-image`, `og-title`, `og-description`, `og-url`).
 
 ### Favicon Detection Strategy
 
