@@ -50,6 +50,8 @@ You write like below to hexo configuration file `_config.yml`:
 
 ```yaml
 link_preview:
+  enable: true
+  simple_link: false
   class_name:
     anchor_link: link-preview
     image: not-gallery-item
@@ -65,12 +67,56 @@ link_preview:
 
 | Name                       | type                 | Default        | Description                                                                                                                                                                                    |
 | -------------------------- | -------------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `enable`                   | `boolean`            | `true`         | Enable or disable the plugin.<br>If set to `false`, the plugin will not generate link preview cards.                                                                                           |
+| `simple_link`              | `boolean`            | `false`        | When set to `true`, generates simple anchor links instead of preview cards, regardless of other settings. Useful for fallback behavior when you want links but not full previews.                 |
 | `class_name`               | `string` or `object` | `link-preview` | If you are specified `string`, set a `class` attribute of the anchor element only.<br>If you are specified `object`, set each a `class` attribute of the anchor element and the image element. |
 | `class_name`.`anchor_link` | `string`             | `link-preview` | Set a `class` attribute of the anchor element.                                                                                                                                                 |
 | `class_name`.`image`       | `string`             |                | Set a `class` attribute of the image element.<br>If you are not specify (empty string, etc.), nothing to set.                                                                                  |
 | `description_length`       | `number`             | `140`          | It sliced to fit if a number of character of the `og:Description` exceeds the specified number value.                                                                                          |
 | `disguise_crawler`         | `boolean`            | `true`         | If scraper for OpenGraph want to disguise to crawler, set `true`.<br>Otherwise, set to `false`.                                                                                                |
 | `timeout`                  | `number`             | `10000`        | Set timeout in milliseconds (ms) for OpenGraph scraping. If scraping takes longer than this time, it will be treated as an error and fallback to simple link.                                  |
+
+## Plugin Control Options
+
+### `enable` option
+
+The `enable` option controls whether the plugin is active or not:
+
+- **`enable: true`** (default): Plugin works normally and generates link preview cards
+- **`enable: false`**: Plugin is disabled. Depending on `simple_link` setting:
+  - If `simple_link: false`: Returns empty string (no content)
+  - If `simple_link: true`: Returns simple anchor links
+
+### `simple_link` option
+
+The `simple_link` option provides a fallback mechanism for when you want links but not full preview cards:
+
+- **`simple_link: false`** (default): Generates full OpenGraph preview cards when possible
+- **`simple_link: true`**: Always generates simple anchor links, bypassing OpenGraph scraping
+
+### Usage Scenarios
+
+```yaml
+# Normal operation (default)
+link_preview:
+  enable: true
+  simple_link: false
+
+# Completely disabled plugin
+link_preview:
+  enable: false
+  simple_link: false
+
+# Fallback to simple links only
+link_preview:
+  enable: false
+  simple_link: true
+
+# Force simple links even when plugin is enabled
+link_preview:
+  enable: true
+  simple_link: true
+```
 
 ## Example
 

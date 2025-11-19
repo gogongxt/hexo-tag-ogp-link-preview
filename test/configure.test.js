@@ -11,6 +11,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -28,6 +30,8 @@ describe('configure', () => {
             description_length: 100,
             disguise_crawler: false,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -43,6 +47,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -58,6 +64,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -75,6 +83,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -92,6 +102,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -107,6 +119,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -122,6 +136,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -137,6 +153,8 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 5000,
+            enable: true,
+            simple_link: false,
         });
     });
 
@@ -152,6 +170,60 @@ describe('configure', () => {
             description_length: 140,
             disguise_crawler: true,
             timeout: 10000,
+            enable: true,
+            simple_link: false,
+        });
+    });
+
+    it('Specify enable as false', () => {
+        const hexoCfg = {
+            link_preview: {
+                enable: false,
+            },
+        };
+
+        expect(getConfig(hexoCfg)).toStrictEqual({
+            class_name: { anchor_link: 'link-preview' },
+            description_length: 140,
+            disguise_crawler: true,
+            timeout: 10000,
+            enable: false,
+            simple_link: false,
+        });
+    });
+
+    it('Specify simple_link as true', () => {
+        const hexoCfg = {
+            link_preview: {
+                simple_link: true,
+            },
+        };
+
+        expect(getConfig(hexoCfg)).toStrictEqual({
+            class_name: { anchor_link: 'link-preview' },
+            description_length: 140,
+            disguise_crawler: true,
+            timeout: 10000,
+            enable: true,
+            simple_link: true,
+        });
+    });
+
+    it('Specify both enable and simple_link', () => {
+        const hexoCfg = {
+            link_preview: {
+                enable: false,
+                simple_link: true,
+            },
+        };
+
+        expect(getConfig(hexoCfg)).toStrictEqual({
+            class_name: { anchor_link: 'link-preview' },
+            description_length: 140,
+            disguise_crawler: true,
+            timeout: 10000,
+            enable: false,
+            simple_link: true,
         });
     });
 });
