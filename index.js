@@ -19,7 +19,7 @@ hexo.extend.tag.register(
         // If simple_link is true, return simple anchor tag immediately
         if (config.simple_link) {
             const params = getParameters(args, config);
-            return `<a href="${params.scrape.url}" target="${params.scrape.target || '_blank'}" rel="${params.scrape.rel || 'nofollow'}">${params.scrape.url}</a>`;
+            return `<div><a href="${params.scrape.url}" target="${params.scrape.target || '_blank'}" rel="${params.scrape.rel || 'nofollow'}">${params.scrape.url}</a></div>`;
         }
 
         // Normal link preview generation
